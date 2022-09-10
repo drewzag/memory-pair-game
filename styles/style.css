@@ -44,6 +44,8 @@ body {
   background-color: white;
   border-radius: 20px;
   pointer-events: none;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
 }
 .section .card .back {
   position: absolute;
@@ -51,11 +53,9 @@ body {
   background-image: url("../images/nfl.svg");
   background-size: 100%;
   background-repeat: no-repeat;
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
 }
 .section .card .face {
-  transform: rotateY(180deg);
+  transform: rotateY(0deg);
 }
 .section .toggle {
   transform: rotateY(180deg);
