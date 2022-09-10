@@ -38,6 +38,7 @@ body {
       height: 100%;
       background-color: white;
       border-radius: 20px;
+      backface-visibility: hidden;
       pointer-events: none;
     }
     .back {
@@ -46,7 +47,6 @@ body {
       background-image: url('../images/nfl.svg');
       background-size: 100%;
       background-repeat: no-repeat;
-      backface-visibility: hidden;
     }
     .face {
       transform: rotateY(180deg);
