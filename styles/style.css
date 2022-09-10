@@ -55,7 +55,7 @@ body {
   background-repeat: no-repeat;
 }
 .section .card .face {
-  transform: rotateY(0deg);
+  transform: rotateY(180deg);
 }
 .section .toggle {
   transform: rotateY(180deg);
