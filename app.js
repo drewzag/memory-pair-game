@@ -18,6 +18,7 @@ const randomize = () => {
 const cardGenerator = () => {
   const cardData = randomize()
 
+  const cardsContainer = document.createDocumentFragment()
   cardData.forEach((item) => {
     const card = document.createElement('div')
     const face = document.createElement('img')
@@ -29,15 +30,15 @@ const cardGenerator = () => {
 
     face.src = item.imgSrc
 
-    section.appendChild(card)
-    card.appendChild(face)
-    card.appendChild(back)
+    card.append(face, back)
+    cardsContainer.appendChild(card)
 
     card.addEventListener('click', (e) => {
       card.classList.toggle('toggle')
       checkCards(e)
     })
   })
+  section.appendChild(cardsContainer)
 }
 
 const checkCards = (e) => {
