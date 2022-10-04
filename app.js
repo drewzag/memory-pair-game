@@ -15,6 +15,11 @@ const randomize = () => {
   return cardsList
 }
 
+const onCardClickHandler = ({ target }) => {
+  target.classList.toggle('toggle')
+  checkCards(target)
+}
+
 const generateCards = () => {
   const cardsList = randomize()
 
@@ -32,17 +37,14 @@ const generateCards = () => {
 
     card.append(face, back)
     cardsContainer.appendChild(card)
-
-    card.addEventListener('click', ({ target }) => {
-      card.classList.toggle('toggle')
-      checkCards(target)
-    })
+    card.addEventListener('click', onCardClickHandler)
   })
   section.appendChild(cardsContainer)
 }
 
-const removeClass = (item, className) => {
-  item.classList.remove(className)
+const removeClass = (item) => {
+  item.classList.remove('toggle')
+  item.classList.remove('flipped')
 }
 
 const checkCards = (clickedCards) => {
@@ -55,11 +57,11 @@ const checkCards = (clickedCards) => {
     if (flippedCards[0].getAttribute('name') === flippedCards[1].getAttribute('name'))
       flippedCards.forEach((card) => {
         card.classList.remove('flipped')
+        card.removeEventListener('click', onCardClickHandler)
       })
     else {
       flippedCards.forEach((card) => {
-        card.classList.remove('flipped')
-        setTimeout(removeClass, 1000, card, 'toggle')
+        setTimeout(removeClass, 1000, card)
       })
     }
   }

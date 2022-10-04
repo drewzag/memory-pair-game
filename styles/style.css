@@ -61,6 +61,9 @@ body {
 .section .toggle {
   transform: rotateY(180deg);
 }
+.section .flipped {
+  pointer-events: none;
+}
 
 @media (max-width: 750px) {
   .header {
