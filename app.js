@@ -1,8 +1,8 @@
 const section = document.querySelector('section')
 
-const getData = () => [
+const data = [
   { imgSrc: './images/ari.webp', id: 'arisona' },
-  { imgSrc: './images/cle.webp', id: 'clevlend' },
+  { imgSrc: './images/cle.webp', id: 'clevland' },
   { imgSrc: './images/lv.webp', id: 'las-vegas' },
   { imgSrc: './images/mia.webp', id: 'miami' },
   { imgSrc: './images/sea.webp', id: 'seattle' },
@@ -10,16 +10,16 @@ const getData = () => [
 ]
 
 const randomize = () => {
-  const cardData = getData().concat(getData())
-  cardData.sort(() => Math.random() - 0.5)
-  return cardData
+  const cardsList = data.concat(data)
+  cardsList.sort(() => Math.random() - 0.5)
+  return cardsList
 }
 
-const cardGenerator = () => {
-  const cardData = randomize()
+const generateCards = () => {
+  const cardsList = randomize()
 
   const cardsContainer = document.createDocumentFragment()
-  cardData.forEach((item) => {
+  cardsList.forEach((item) => {
     const card = document.createElement('div')
     const face = document.createElement('img')
     const back = document.createElement('div')
@@ -41,8 +41,11 @@ const cardGenerator = () => {
   section.appendChild(cardsContainer)
 }
 
-const checkCards = (target) => {
-  const clickedCards = target
+const removeClass = (item, className) => {
+  item.classList.remove(className)
+}
+
+const checkCards = (clickedCards) => {
   clickedCards.classList.toggle('flipped')
   const flippedCards = document.querySelectorAll('.flipped')
   const cards = document.querySelectorAll('.card')
@@ -56,7 +59,7 @@ const checkCards = (target) => {
     else {
       flippedCards.forEach((card) => {
         card.classList.remove('flipped')
-        setTimeout(() => card.classList.remove('toggle'), 1000)
+        setTimeout(removeClass, 1000, card, 'toggle')
       })
     }
   }
@@ -67,12 +70,12 @@ const checkCards = (target) => {
 }
 
 const restart = () => {
-  const cardData = randomize()
+  const cardsList = randomize()
   const faces = document.querySelectorAll('.face')
   const cards = document.querySelectorAll('.card')
   section.style.pointerEvents = 'none'
 
-  cardData.forEach((card, index) => {
+  cardsList.forEach((card, index) => {
     cards[index].classList.remove('toggle')
     setTimeout(() => {
       cards[index].style.pointerEvents = 'all'
@@ -84,4 +87,4 @@ const restart = () => {
   setTimeout(() => alert('Well Done!'), 100)
 }
 
-cardGenerator()
+generateCards()
